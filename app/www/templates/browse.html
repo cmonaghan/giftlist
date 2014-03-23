@@ -5,12 +5,12 @@
         <div class="list card">
 
           <div class="item item-body">
-            <img class="product-image" ng-src="{{ gift.image[0].imageurl }}">
+            <img class="product-image" ng-src="{{ gift.img }}">
             <p class="subdued">
-              {{ gift.summary.name }}
+              {{ gift.description }}
             </p>
             <p class="price top-right">
-              {{ gift.price.sale.value || gift.price.regular.value || gift.price.everydayvalue.value | currency }}
+              {{ gift.price | currency }}
             </p>
           </div>
           <div class="item myitem">

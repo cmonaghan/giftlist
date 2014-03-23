@@ -1,13 +1,13 @@
 angular.module('giftlist.controllers')
 
-.controller('BrowseCtrl', function($scope, GiftService, WishListService, macysData) {
-  // "Gifts" is a service returning mock data (services.js)
-  // $scope.gifts = GiftService.all();
+.controller('BrowseCtrl', function($scope, GiftService, WishListService) {
+  // "Gifts" is a service returning mock data
+  $scope.gifts = GiftService.all();
   // $scope.gifts = GiftService.getWishList();
   // debugger;
   // GiftService.getWishList();
-  $scope.gifts = macysData.category[0].product.product;
-  $scope.gift = macysData.category[0].product.product[GiftService.productIndex];
+  // $scope.gifts = macysData.category[0].product.product;
+  $scope.gift = $scope.gifts[GiftService.productIndex];
   console.log($scope.gifts);
 
   $scope.nextItem = function () {
