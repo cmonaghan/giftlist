@@ -3,10 +3,6 @@ angular.module('giftlist.controllers')
 .controller('BrowseCtrl', function($scope, GiftService, WishListService) {
   // "Gifts" is a service returning mock data
   $scope.gifts = GiftService.all();
-  // $scope.gifts = GiftService.getWishList();
-  // debugger;
-  // GiftService.getWishList();
-  // $scope.gifts = macysData.category[0].product.product;
   $scope.gift = $scope.gifts[GiftService.productIndex];
   console.log($scope.gifts);
 
@@ -28,7 +24,7 @@ angular.module('giftlist.controllers')
     // pop gift from the potential gift list
     // depending on the direction of the swipe
     // the gift is either tossed away (swipe left) or
-    // stored in wishlist (swipe right)
+    // stored in giftlist (swipe right)
 
     // var gift = $scope.gifts.shift();
     // console.log(gift);

@@ -47,19 +47,5 @@ angular.module('giftlist.services')
     },
     productIndex: 0,
     wishlist: []
-    // getWishList: function() {
-    //   var deferred = $q.defer();
-
-    //   $http.get(url)
-    //     .success(function(data) {
-    //       // this.wishlist = data.category[0].product.product;
-    //       savedData = data;
-    //       deferred.resolve(data);
-    //     })
-    //     .error(function(data, status) {
-    //       deferred.reject(data, status);
-    //     });
-    //   return deferred.promise;
-    // }
   };
 });
