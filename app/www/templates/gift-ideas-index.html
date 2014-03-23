@@ -7,9 +7,9 @@
          href="#/tab/gift/{{gift.id}}"
          class="item item-thumbnail-left">
 
-        <img ng-src="{{ gift.image[0].imageurl }}">
-        <h2>{{ gift.summary.name }}</h2>
-        <p>{{ gift.price.sale.value || gift.price.regular.value || gift.price.everydayvalue.value | currency }}</p>
+        <img ng-src="{{ gift.img }}">
+        <h2>{{ gift.description }}</h2>
+        <p>{{ gift.price | currency }}</p>
       </a>
 
     </div>
