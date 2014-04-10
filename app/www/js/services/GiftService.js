@@ -5,6 +5,22 @@ angular.module('giftlist.services')
  */
 .factory('GiftService', function($http, $q) {
   // Might use a resource here that returns a JSON array
+  var GiftItem = Parse.Object.extend('GiftItem');
+  var giftItemQuery = new Parse.Query('GiftItem');
+  giftItemQuery.find({
+    success: function(results) {
+      console.log("Successfully retrieved " + results.length + " items.");
+      console.log(results);
+      for (var i = 0; i < results.length; i++) {
+        var object = results[i];
+        console.log(object.id + ' - ' + object.get('title'));
+      }
+    },
+    error: function(error) {
+      console.log("Error: " + error.code + " " + error.message);
+    }
+  });
+
 
   // Some fake testing data
   var gifts = [
