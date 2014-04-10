@@ -10,14 +10,22 @@
     <script type="text/javascript">
       Parse.initialize("7sT5TrkKNplKarIBxjcOHh8dDfRUQwNlGq5YMuzG", "jmtZwuWJj1aWts0NbOQvYpivU5fCu8f0QfdoVuZj");
 
-      var TestObject = Parse.Object.extend("TestObject");
-      var testObject = new TestObject();
-        testObject.save({foo: "hello"}, {
+      var sampleGiftItem =
+        {
+          title: 'The Innovator\'s Dilemma',
+          description: 'The Revolutionary Book That Will Change the Way You Do Business.',
+          img: 'http://ecx.images-amazon.com/images/I/41x2I-hjJQL._SY344_PJlook-inside-v2,TopRight,1,0_SH20_BO1,204,203,200_.jpg',
+          price: 17.99
+        };
+
+      var GiftItem = Parse.Object.extend("GiftItem");
+      var giftItem = new GiftItem();
+        giftItem.save(sampleGiftItem, {
         success: function(object) {
-          console.log('testObject saved successfully to parse.');
+          console.log('giftItem saved successfully to parse.');
         },
         error: function(model, error) {
-          console.log('testObject failed to save to parse.');
+          console.log('giftItem failed to save to parse.');
         }
       });
     </script>
