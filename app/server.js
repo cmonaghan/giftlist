@@ -8,6 +8,7 @@ prodAdv.call("ItemSearch", options, function(err, result) {
   if (err) {
     console.log(err);
   } else {
+    // running `node-debug server.js` (node-inspector) allows you to view result in browser
     console.log(result);
   }
 });
