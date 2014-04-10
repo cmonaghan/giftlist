@@ -55,7 +55,6 @@ angular.module('giftlist.services')
           // change this wishlist eventually
           user[fbUser.id].wishlist = [];
 
-          debugger;
           wishListRef = userRef.child('wishlist');
 
 
@@ -94,8 +93,9 @@ angular.module('giftlist.services')
   };
 
   var logout = function () {
-    console.log('logging out');
-    auth.logout();
+    // console.log('logging out');
+    // auth.logout();
+    Parse.User.logOut()
   };
 
   return {
