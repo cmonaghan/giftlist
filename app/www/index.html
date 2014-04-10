@@ -43,6 +43,26 @@
     'starter' is the name of this angular module (js/app.js)
   -->
   <body ng-app="giftlist" animation="slide-left-right-ios7">
+    <!-- Facebook SDK (https://developers.facebook.com/docs/javascript/quickstart) -->
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        Parse.FacebookUtils.init({
+          appId      : '254034788108794', // this appID isn't secret or sensitive info
+          status     : true,
+          cookie     : true, // enable cookies to allow Parse to access the session
+          xfbml      : true  // parse XFBML
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <!--
       The nav bar that will be updated as we navigate between views
