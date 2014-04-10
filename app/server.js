@@ -19,7 +19,7 @@ prodAdv.call("ItemSearch", options, function(err, result) {
 
 
 // Parse stuff
-var Parse = require('node-parse-api').Parse;
+var Parse = require('node-parse-api').Parse; // docs are here: https://github.com/leveton/node-parse-api
 
 var APP_ID = "7sT5TrkKNplKarIBxjcOHh8dDfRUQwNlGq5YMuzG";
 var MASTER_KEY = "FzU95q0Il1D8aqAEFWSrvv8haq7pyvJAV0mg1heQ";
