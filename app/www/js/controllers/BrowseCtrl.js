@@ -2,11 +2,20 @@ angular.module('giftlist.controllers')
 
 .controller('BrowseCtrl', function($scope, GiftService, WishListService) {
   // "GiftService" returns data from Parse
-  $scope.gifts = GiftService.all();
+  var promise = GiftService;
+  promise.then(function(result){
+    console.log('promise successful. result is:', result);
+    $scope.gifts = result.all();
+    $scope.gift = $scope.gifts[0];
+  }, function(err){
+    console.log('promise failed with error:', err);
+  });
 
-  console.log($scope.gifts);
+  // $scope.gifts = GiftService.all();
 
-  $scope.gift = $scope.gifts[0];
+  // console.log($scope.gifts);
+
+  // $scope.gift = $scope.gifts[0];
   // $scope.gift = $scope.gifts[GiftService.productIndex];
 
   $scope.nextItem = function () {

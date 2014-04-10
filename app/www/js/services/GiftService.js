@@ -1,29 +1,31 @@
 angular.module('giftlist.services')
 
 .factory('GiftService', function($http, $q) {
-  var giftItems;
+  var deferred = $q.defer();
 
   var GiftItem = Parse.Object.extend('GiftItem');
   var giftItemQuery = new Parse.Query('GiftItem');
   giftItemQuery.find({
-    success: function(results) {
-      console.log("Successfully retrieved " + results.length + " items from Parse.");
-      console.log(results);
-      giftItems = results;
+    success: function(giftItems) {
+      console.log("Successfully retrieved " + giftItems.length + " items from Parse.");
+      console.log(giftItems);
+      deferred.resolve({
+        all: function() {
+          return giftItems;
+        },
+        get: function(giftId) {
+          // Simple index lookup
+          return giftItems[giftId];
+        },
+        wishlist: []
+      });
     },
     error: function(error) {
+      deferred.reject("Error fetching giftItems from Parse: " + error.code + " " + error.message);
       console.log("Error fetching giftItems from Parse: " + error.code + " " + error.message);
     }
   });
 
-  return {
-    all: function() {
-      return giftItems;
-    },
-    get: function(giftId) {
-      // Simple index lookup
-      return giftItems[giftId];
-    },
-    wishlist: []
-  };
+
+  return deferred.promise;
 });
