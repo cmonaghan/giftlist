@@ -1,10 +1,13 @@
 angular.module('giftlist.controllers')
 
 .controller('BrowseCtrl', function($scope, GiftService, WishListService) {
-  // "Gifts" is a service returning mock data
+  // "GiftService" returns data from Parse
   $scope.gifts = GiftService.all();
-  $scope.gift = $scope.gifts[GiftService.productIndex];
+
   console.log($scope.gifts);
+
+  $scope.gift = $scope.gifts[0];
+  // $scope.gift = $scope.gifts[GiftService.productIndex];
 
   $scope.nextItem = function () {
     GiftService.productIndex++;
