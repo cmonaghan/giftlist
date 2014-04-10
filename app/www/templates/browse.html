@@ -3,14 +3,14 @@
 <!--     <giftlist-slide-box show-pager="false" on-swipe="removeGift(swipeDir)">
       <giftlist-slide ng-repeat="gift in gifts"> -->
         <div class="list card">
-
           <div class="item item-body">
-            <img class="product-image" ng-src="{{ gift.productImage }}">
+            <img class="product-image" ng-src="{{ gift.get('productImage') }}">
+            <h1>{{ gift.get('title') }}</h1>
             <p class="subdued">
-              {{ gift.description }}
+              {{ gift.get('description') }}
             </p>
             <p class="price top-right">
-              {{ gift.price | currency }}
+              {{ gift.get('price') | currency }}
             </p>
           </div>
           <div class="item myitem">
