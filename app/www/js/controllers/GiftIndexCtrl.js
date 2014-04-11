@@ -4,7 +4,13 @@ angular.module('giftlist.controllers')
 .controller('GiftIndexCtrl', function($scope, GiftService, WishListService) {
   // "Gifts" is a service returning mock data (services.js)
   // $scope.gifts = GiftService.all();
-  $scope.wishList = WishListService.getWishList();
+  var promise = WishListService;
+  promise.then(function(result){
+    console.log('WishListService promise successful. result is:', result);
+    $scope.wishList = result.getWishList();
+    console.log("WISHLIST : ", $scope.wishList);
+  }, function(err){
+    console.log('promise failed with error:', err);
+  });
 
-  console.log("WISHLIST : ", $scope.wishList);
 });

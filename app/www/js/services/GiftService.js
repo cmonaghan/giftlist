@@ -26,6 +26,5 @@ angular.module('giftlist.services')
     }
   });
 
-
   return deferred.promise;
 });
