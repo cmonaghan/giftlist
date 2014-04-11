@@ -57,7 +57,9 @@ h1.logo {
 
 .product-image {
   max-height: 300px;
+  max-width: 100%;
 }
+
 .myitem {
   padding: 0;
 }
