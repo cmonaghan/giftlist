@@ -31,7 +31,7 @@ angular.module('giftlist.services')
   // ------------------------------------------------
   var giftlist = new Firebase('https://thegiftlist.firebaseio.com/users/');
 
-  var auth = new FirebaseSimpleLogin(giftlist, function(error, fbUser) {
+  /*var auth = new FirebaseSimpleLogin(giftlist, function(error, fbUser) {
     if (error) {
       // an error occurred while attempting login
       console.log(error);
@@ -55,7 +55,6 @@ angular.module('giftlist.services')
           // change this wishlist eventually
           user[fbUser.id].wishlist = [];
 
-          debugger;
           wishListRef = userRef.child('wishlist');
 
 
@@ -83,26 +82,42 @@ angular.module('giftlist.services')
       // user is logged out
       console.log('user is logged out');
     }
-  });
+  });*/
 
   var facebookLogin = function () {
+    // the lines below are for login via Firebase
+    // auth.login('facebook', {
+    //  rememberMe: true,
+    //  scope: 'email, user_birthday, user_likes, user_friends'
+    // });
+
     console.log('logging in');
-    auth.login('facebook', {
-     rememberMe: true,
-     scope: 'email, user_birthday, user_likes, user_friends'
+    Parse.FacebookUtils.logIn(null, {
+      success: function(user) {
+        if (!user.existed()) {
+          alert("User signed up and logged in through Facebook!");
+        } else {
+          alert("User logged in through Facebook!");
+        }
+      },
+      error: function(user, error) {
+        alert("User cancelled the Facebook login or did not fully authorize.");
+      }
     });
   };
 
   var logout = function () {
+    // auth.logout(); // this is for logout via firebase
+
     console.log('logging out');
-    auth.logout();
+    Parse.User.logOut()
   };
 
   return {
-    auth: auth,
+    // auth: auth,
     giftlist: giftlist,
-    // getUserRef: function() return userRef,
-    // wishListRef: wishListRef,
+    // getUserRef: function() return userRef, // this was commented out during hackathon
+    // wishListRef: wishListRef, // this was commented out during hackathon
     facebookLogin: facebookLogin,
     logout: logout,
     getUserInfo: getUserInfo,
