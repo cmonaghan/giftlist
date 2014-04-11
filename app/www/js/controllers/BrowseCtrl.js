@@ -34,18 +34,14 @@ angular.module('giftlist.controllers')
       }
       console.log($scope.gifts);
     };
-
-  })
-
+  });
 
   $scope.nextItem = function () {
     currIndex++;
     $scope.gift = $scope.gifts[currIndex];
   };
 
-
   $scope.skipItem = function() {
     $scope.nextItem();
   };
-
 });
