@@ -1,15 +1,15 @@
 angular.module('giftlist.controllers')
 
-.controller('BrowseCtrl', function($scope, GiftService, WishListService) {
-  // "GiftService" returns data from Parse
+.controller('BrowseCtrl', function($scope, NewItemsService, WishListService) {
+  // "NewItemsService" returns data from Parse
   var currIndex = 0;
 
-  var giftServicePromise = GiftService;
-  giftServicePromise.then(function(result){
+  var newItemsServicePromise = NewItemsService;
+  newItemsServicePromise.then(function(result){
     $scope.gifts = result.all();
     $scope.gift = $scope.gifts[currIndex];
   }, function(err){
-    console.log('giftServicePromise failed with error:', err);
+    console.log('newItemsServicePromise failed with error:', err);
   });
 
   // var wishListServicePromise = WishListService;
