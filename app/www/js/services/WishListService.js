@@ -3,7 +3,6 @@ angular.module('giftlist.services')
 .factory('WishListService', function($q) {
 
   var wishList = {};
-  console.log('wishList was called');
 
   // create a reference to the current user
   var user = Parse.User.current();
@@ -14,7 +13,7 @@ angular.module('giftlist.services')
   var userGiftList = new UserGiftList();
 
 
-  userGiftList.set('userId', user.id);
+  userGiftList.set('parent', user);
   userGiftList.addUnique('savedGifts', '123xyz');
 
   userGiftList.save(null, {
