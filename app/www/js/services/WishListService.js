@@ -19,10 +19,25 @@ angular.module('giftlist.services')
       console.log('userGiftList',userGiftList);
       var userGiftListId = userGiftList.id;
       alert('success!');
+      return userGiftList;
     },
     error: function() {
       alert('error!');
     }
+  }).then(function(result){
+    var query = new Parse.Query(UserGiftList);
+    query.get("fDzrCfMjYu", {
+      success: function(object) {
+        // The object was retrieved successfully.
+        object.addUnique('savedGifts', 'what');
+        object.save();
+      },
+      error: function(object, error) {
+        // The object was not retrieved successfully.
+        // error is a Parse.Error with an error code and description.
+        alert('Error fetching object!');
+      }
+    });
   });
 
 
