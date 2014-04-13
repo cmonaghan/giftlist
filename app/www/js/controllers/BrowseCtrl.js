@@ -13,28 +13,29 @@ angular.module('giftlist.controllers')
     console.log('giftServicePromise failed with error:', err);
   });
 
-  var wishListServicePromise = WishListService;
-  wishListServicePromise.then(function(result){
-    console.log('wishListServicePromise successful. result is:', result);
-    $scope.addToWishList = function(gift) {
-      $scope.nextItem();
-      result.addToWishList(gift);
-    };
+  // var wishListServicePromise = WishListService;
+  // wishListServicePromise.then(function(result){
+  //   console.log('wishListServicePromise successful. result is:', result);
+  // });
 
-    $scope.removeGift = function(swipeDir) {
-      // pop gift from the potential gift list
-      // depending on the direction of the swipe
-      // the gift is either tossed away (swipe left) or
-      // stored in giftlist (swipe right)
+  $scope.addToWishList = function(gift) {
+    $scope.nextItem();
+    WishListService.addToWishList(gift);
+  };
 
-      // var gift = $scope.gifts.shift();
-      // console.log(gift);
-      if (swipeDir === "right") {
-        $scope.wishList.push(gift);
-      }
-      console.log($scope.gifts);
-    };
-  });
+  $scope.removeGift = function(swipeDir) {
+    // pop gift from the potential gift list
+    // depending on the direction of the swipe
+    // the gift is either tossed away (swipe left) or
+    // stored in giftlist (swipe right)
+
+    // var gift = $scope.gifts.shift();
+    // console.log(gift);
+    if (swipeDir === "right") {
+      $scope.wishList.push(gift);
+    }
+    console.log($scope.gifts);
+  };
 
   $scope.nextItem = function () {
     currIndex++;
