@@ -7,8 +7,6 @@ angular.module('giftlist.services')
   var giftItemQuery = new Parse.Query('GiftItem');
   giftItemQuery.find({
     success: function(giftItems) {
-      console.log("Successfully retrieved " + giftItems.length + " items from Parse.");
-      console.log(giftItems);
       deferred.resolve({
         all: function() {
           return giftItems;

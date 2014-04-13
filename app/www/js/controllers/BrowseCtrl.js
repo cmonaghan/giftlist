@@ -6,7 +6,6 @@ angular.module('giftlist.controllers')
 
   var giftServicePromise = GiftService;
   giftServicePromise.then(function(result){
-    console.log('giftServicePromise successful. result is:', result);
     $scope.gifts = result.all();
     $scope.gift = $scope.gifts[currIndex];
   }, function(err){
