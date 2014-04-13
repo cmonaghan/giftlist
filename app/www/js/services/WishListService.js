@@ -26,10 +26,10 @@ angular.module('giftlist.services')
     }
   }).then(function(result){
     var query = new Parse.Query(UserGiftList);
-    query.get("fDzrCfMjYu", {
+    query.get(result[0].id, {
       success: function(object) {
         // The object was retrieved successfully.
-        object.addUnique('savedGifts', 'what');
+        object.addUnique('savedGifts', 'face');
         object.save();
       },
       error: function(object, error) {
