@@ -1,6 +1,6 @@
 angular.module('giftlist.controllers')
 
-.controller('BrowseCtrl', function($scope, NewItemsService, WishListService) {
+.controller('BrowseCtrl', function($scope, NewItemsService, GiftListService) {
   // "NewItemsService" returns data from Parse
   var currIndex = 0;
 
@@ -12,14 +12,9 @@ angular.module('giftlist.controllers')
     console.log('newItemsServicePromise failed with error:', err);
   });
 
-  // var wishListServicePromise = WishListService;
-  // wishListServicePromise.then(function(result){
-  //   console.log('wishListServicePromise successful. result is:', result);
-  // });
-
-  $scope.addToWishList = function(gift) {
+  $scope.addToGiftList = function(gift) {
     $scope.nextItem();
-    WishListService.addToWishList(gift);
+    GiftListService.addToGiftList(gift);
   };
 
   $scope.removeGift = function(swipeDir) {
@@ -31,7 +26,7 @@ angular.module('giftlist.controllers')
     // var gift = $scope.gifts.shift();
     // console.log(gift);
     if (swipeDir === "right") {
-      $scope.wishList.push(gift);
+      $scope.giftList.push(gift);
     }
     console.log($scope.gifts);
   };

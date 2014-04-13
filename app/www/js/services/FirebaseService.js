@@ -7,7 +7,7 @@ angular.module('giftlist.services')
   // -------------------------------------------
   var user = {};
   var userRef;
-  var wishListRef;
+  var giftListRef;
 
 
   var createInfo = function(infoJSON) {
@@ -18,12 +18,12 @@ angular.module('giftlist.services')
     return user.facebook;
   };
 
-  var addToWishlist = function(itemJSON) {
-    user.wishlist.push(itemJSON);
+  var addToGiftlist = function(itemJSON) {
+    user.giftlist.push(itemJSON);
   };
 
-  var getWishlist = function() {
-    return user.wishlist;
+  var getGiftlist = function() {
+    return user.giftlist;
   };
 
   // ------------------------------------------------
@@ -121,7 +121,7 @@ angular.module('giftlist.services')
     facebookLogin: facebookLogin,
     logout: logout,
     getUserInfo: getUserInfo,
-    addToWishlist: addToWishlist,
-    getWishlist: getWishlist
+    addToGiftlist: addToGiftlist,
+    getGiftlist: getGiftlist
   };
 });

@@ -1,7 +1,7 @@
 angular.module('giftlist.services')
 
-.factory('WishListService', function($q) {
-  var wishList = {};
+.factory('GiftListService', function($q) {
+  var giftList = {};
 
   var saveItemToParseGiftList = function(gift) {
     // create a reference to the current user
@@ -43,15 +43,15 @@ angular.module('giftlist.services')
   };
 
   return {
-    addToWishList: function(currentGift) {
-      wishList[currentGift.id] = currentGift; // adds gift to the local giftList
+    addToGiftList: function(currentGift) {
+      giftList[currentGift.id] = currentGift; // adds gift to the local giftList
       saveItemToParseGiftList(currentGift); // adds gift to the parse giftList
     },
-    getWishList: function() {
-      return wishList;
+    getGiftList: function() {
+      return giftList;
     },
-    getWishListItem: function(id) {
-      return wishList[id];
+    getGiftListItem: function(id) {
+      return giftList[id];
     }
   };
 

@@ -1,6 +1,6 @@
 angular.module('giftlist.controllers')
 
-.controller('SearchCtrl', function($scope, $ionicLoading, $state, WishListService) {
+.controller('SearchCtrl', function($scope, $ionicLoading, $state, GiftListService) {
   $scope.show = function() {
     $scope.loading = $ionicLoading.show({
       content: 'Loading',
@@ -21,13 +21,13 @@ angular.module('giftlist.controllers')
     console.log("inside sendEmail", email);
     $scope.show();
 
-    WishListService.getWishList(email)
-      // resoluton of getWishList means that an api request was initiated
-      // the server responded with wishList blob and wishList is
-      // avail as a property of the WishListService
+    GiftListService.getGiftList(email)
+      // resoluton of getGiftList means that an api request was initiated
+      // the server responded with giftList blob and giftList is
+      // avail as a property of the GiftListService
       // at this point i probably should transition to the next view
       .then(function() {
-        // switch to wishList view state
+        // switch to giftList view state
         $scope.hide();
         $state.go('tab.gift-ideas');
       }, function(data, status) {
