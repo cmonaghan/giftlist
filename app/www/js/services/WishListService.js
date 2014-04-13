@@ -9,9 +9,10 @@ angular.module('giftlist.services')
     // Create a reference to the Parse.Object 'UserGiftList'
     var UserGiftList = Parse.Object.extend('UserGiftList');
     var userGiftListQuery = new Parse.Query(UserGiftList);
-    userGiftListQuery.equalTo('parent',user);
-    userGiftListQuery.first({
+    userGiftListQuery.equalTo('parent', user); // filters for giftList belonging to that user
+    userGiftListQuery.first({ // queries generally return an array, '.first' returns only the first object in the array
       success: function(userGiftList){
+        // if this user does not have a giftList, create one (ie - this is their first time using the app)
         if (userGiftList === undefined) {
           createNewUserGiftList(gift);
         } else {
@@ -20,7 +21,7 @@ angular.module('giftlist.services')
         }
       },
       error: function() {
-        console.error('Error in userGiftListQuery.');
+        console.error(error);
       }
     });
   };
@@ -32,6 +33,7 @@ angular.module('giftlist.services')
     userGiftList.set('parent',user);
     userGiftList.save({
       success: function() {
+        // now that a userGiftList has been created for this user, we can save this gift to their userGiftList object
         saveItemToParseGiftList(gift);
       },
       error: function(error) {
@@ -42,8 +44,8 @@ angular.module('giftlist.services')
 
   return {
     addToWishList: function(currentGift) {
-      wishList[currentGift.id] = currentGift;
-      saveItemToParseGiftList(currentGift);
+      wishList[currentGift.id] = currentGift; // adds gift to the local giftList
+      saveItemToParseGiftList(currentGift); // adds gift to the parse giftList
     },
     getWishList: function() {
       return wishList;
