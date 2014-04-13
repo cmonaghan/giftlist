@@ -12,20 +12,33 @@ angular.module('giftlist.services')
   // Create a new instance of that class.
   // var userGiftList = new UserGiftList();
 
-
-  var query = new Parse.Query(UserGiftList);
-  query.get("fDzrCfMjYu", {
-    success: function(object) {
-      // The object was retrieved successfully.
-      object.addUnique('savedGifts', 'twladsg');
-      object.save();
+  var userGiftListQuery = new Parse.Query(UserGiftList);
+  userGiftListQuery.equalTo('parent',user);
+  userGiftListQuery.find({
+    success: function(userGiftList){
+      console.log('userGiftList',userGiftList);
+      var userGiftListId = userGiftList.id;
+      alert('success!');
     },
-    error: function(object, error) {
-      // The object was not retrieved successfully.
-      // error is a Parse.Error with an error code and description.
-      alert('Error fetching object!');
+    error: function() {
+      alert('error!');
     }
   });
+
+
+  // var query = new Parse.Query(UserGiftList);
+  // query.get("fDzrCfMjYu", {
+  //   success: function(object) {
+  //     // The object was retrieved successfully.
+  //     object.addUnique('savedGifts', 'twladsg');
+  //     object.save();
+  //   },
+  //   error: function(object, error) {
+  //     // The object was not retrieved successfully.
+  //     // error is a Parse.Error with an error code and description.
+  //     alert('Error fetching object!');
+  //   }
+  // });
 
 
   // userGiftList.save(null, {
