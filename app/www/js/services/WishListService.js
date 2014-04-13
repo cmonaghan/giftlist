@@ -1,6 +1,6 @@
 angular.module('giftlist.services')
 
-.factory('WishListService', function($http, $q, $firebase, FirebaseService) {
+.factory('WishListService', function($q) {
 
   var wishList = {};
 

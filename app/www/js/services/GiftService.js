@@ -1,6 +1,6 @@
 angular.module('giftlist.services')
 
-.factory('GiftService', function($http, $q) {
+.factory('GiftService', function($q) {
   var deferred = $q.defer();
 
   var GiftItem = Parse.Object.extend('GiftItem');
