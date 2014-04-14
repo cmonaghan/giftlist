@@ -3,11 +3,12 @@ angular.module('giftlist.services')
 .factory('GiftListService', function($q, $state) {
   var giftList = {};
 
+  // create a reference to the current user
+  var user = Parse.User.current();
+  // Create a reference to the Parse.Object 'UserGiftList'
+  var UserGiftList = Parse.Object.extend('UserGiftList');
+
   var saveItemToParseGiftList = function(gift) {
-    // create a reference to the current user
-    var user = Parse.User.current();
-    // Create a reference to the Parse.Object 'UserGiftList'
-    var UserGiftList = Parse.Object.extend('UserGiftList');
     var userGiftListQuery = new Parse.Query(UserGiftList);
     userGiftListQuery.equalTo('parent', user); // filters for giftList belonging to that user
     userGiftListQuery.first({ // queries generally return an array, '.first' returns only the first object in the array
@@ -27,8 +28,6 @@ angular.module('giftlist.services')
   };
 
   var createNewUserGiftList = function(gift){
-    var user = Parse.User.current();
-    var UserGiftList = Parse.Object.extend('UserGiftList');
     var userGiftList = new UserGiftList();
     userGiftList.set('parent',user);
     userGiftList.save({
@@ -43,15 +42,12 @@ angular.module('giftlist.services')
   };
 
   var fetchParseGiftList = function() {
-    var user = Parse.User.current();
-    var UserGiftList = Parse.Object.extend('UserGiftList');
     var userGiftListQuery = new Parse.Query(UserGiftList);
     userGiftListQuery.equalTo('parent', user); // filters for giftList belonging to that user
     userGiftListQuery.first({
       success: function(userGiftList){
-        // if this user does not have a giftList, create one (ie - this is their first time using the app)
         if (userGiftList === undefined) {
-          console.log('no items exist in this giftList!');
+          console.log('No items exist in this giftList!');
         } else {
           return userGiftList;
         }
@@ -60,11 +56,10 @@ angular.module('giftlist.services')
         console.error(error);
       }
     }).then(function(userGiftList) {
-      var giftListArray = userGiftList.get('savedGifts');
-
+      var userGiftListArray = userGiftList.get('savedGifts');
       var GiftItem = Parse.Object.extend('GiftItem');
       var giftItemQuery = new Parse.Query(GiftItem);
-      giftItemQuery.containedIn('objectId', giftListArray);
+      giftItemQuery.containedIn('objectId', userGiftListArray);
       giftItemQuery.find({
         success: function(giftItems){
           for (var i = 0; i < giftItems.length; i++) {
@@ -73,7 +68,6 @@ angular.module('giftlist.services')
           /* The next line '$state.go(...)' is a hack. For some reason, the user
            * had to click 'My Giftlist' again to make the list render */
           $state.go('tab.gift-ideas');
-          // return giftList;
         },
         error: function(error) {
           console.error(error);
