@@ -1,6 +1,6 @@
 angular.module('giftlist.services')
 
-.factory('GiftListService', function($q) {
+.factory('GiftListService', function($q, $state) {
   var giftList = {};
 
   var saveItemToParseGiftList = function(gift) {
@@ -70,8 +70,10 @@ angular.module('giftlist.services')
           for (var i = 0; i < giftItems.length; i++) {
             giftList[ giftItems[i].id ] = giftItems[i];
           };
-          console.log(giftList);
-          return giftList;
+          /* The next line '$state.go(...)' is a hack. For some reason, the user
+           * had to click 'My Giftlist' again to make the list render */
+          $state.go('tab.gift-ideas');
+          // return giftList;
         },
         error: function(error) {
           console.error(error);
