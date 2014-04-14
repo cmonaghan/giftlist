@@ -1,14 +1,12 @@
 angular.module('giftlist.services')
 
-.factory('GiftService', function($http, $q) {
+.factory('NewItemsService', function($q) {
   var deferred = $q.defer();
 
   var GiftItem = Parse.Object.extend('GiftItem');
   var giftItemQuery = new Parse.Query('GiftItem');
   giftItemQuery.find({
     success: function(giftItems) {
-      console.log("Successfully retrieved " + giftItems.length + " items from Parse.");
-      console.log(giftItems);
       deferred.resolve({
         all: function() {
           return giftItems;
@@ -25,7 +23,6 @@ angular.module('giftlist.services')
       console.log("Error fetching giftItems from Parse: " + error.code + " " + error.message);
     }
   });
-
 
   return deferred.promise;
 });

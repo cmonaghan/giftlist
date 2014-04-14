@@ -11,9 +11,6 @@
       Parse.initialize("7sT5TrkKNplKarIBxjcOHh8dDfRUQwNlGq5YMuzG", "jmtZwuWJj1aWts0NbOQvYpivU5fCu8f0QfdoVuZj");
     </script>
 
-    <!-- Firebase -->
-    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-
     <!-- ionic css -->
     <link href="lib/css/ionic.css" rel="stylesheet">
     <link href="lib/css/animate.css" rel="stylesheet">
@@ -24,12 +21,6 @@
     <!-- ionic/angularjs scripts -->
     <script src="lib/js/ionic.bundle.js"></script>
     <script src="lib/js/angular/angular-animate.js"></script>
-
-    <!-- AngularFire Plugin -->
-    <script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
-    <script type='text/javascript'
-            src='https://cdn.firebase.com/js/simple-login/1.2.5/firebase-simple-login.js'>
-    </script>
 
 
     <!-- cordova script (this will be a 404 during development) -->
@@ -48,8 +39,8 @@
     <script>
       window.fbAsyncInit = function() {
         Parse.FacebookUtils.init({
-          appId      : '254034788108794', // this appID isn't secret or sensitive info
-          status     : true,
+          appId      : '254034788108794', // It's ok to reveal this appID, it isn't secret or sensitive
+          // status     : true, // disabled because it can interfere with Parse Facebook integration
           cookie     : true, // enable cookies to allow Parse to access the session
           xfbml      : true  // parse XFBML
         });
@@ -81,10 +72,9 @@
     -->
     <ion-nav-view></ion-nav-view>
     <script src="js/app.js"></script>
-    <script src="js/ionic.swipecards.js"></script>
-    <script src="js/services/FirebaseService.js"></script>
-    <script src="js/services/GiftService.js"></script>
-    <script src="js/services/WishListService.js"></script>
+    <script src="js/services/AuthService.js"></script>
+    <script src="js/services/NewItemsService.js"></script>
+    <script src="js/services/GiftListService.js"></script>
     <script src="js/controllers/BrowseCtrl.js"></script>
     <script src="js/controllers/GiftDetailCtrl.js"></script>
     <script src="js/controllers/GiftIndexCtrl.js"></script>
