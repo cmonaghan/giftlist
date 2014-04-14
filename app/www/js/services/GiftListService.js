@@ -18,6 +18,7 @@ angular.module('giftlist.services')
           createNewUserGiftList(gift);
         } else {
           userGiftList.addUnique('savedGifts', gift.id);
+          userGiftList.increment('savedGiftsCount');
           userGiftList.save();
         }
       },
@@ -30,7 +31,8 @@ angular.module('giftlist.services')
   // This is only used as a helper function for saveItemToParseGiftList
   var createNewUserGiftList = function(gift){
     var userGiftList = new UserGiftList();
-    userGiftList.set('parent',user);
+    userGiftList.set('parent', user);
+    userGiftList.set('savedGiftsCount', 0)
     userGiftList.save({
       success: function() {
         // now that a userGiftList has been created for this user, we can save this gift to their userGiftList object

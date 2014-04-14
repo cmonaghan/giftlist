@@ -16,6 +16,7 @@ angular.module('giftlist.services')
           createNewItemsViewed(item);
         } else {
           itemsViewed.addUnique('itemsViewed', item.id);
+          itemsViewed.increment('itemsViewedCount');
           itemsViewed.save();
         }
       },
@@ -29,6 +30,7 @@ angular.module('giftlist.services')
   var createNewItemsViewed = function(item){
     var itemsViewed = new ItemsViewed();
     itemsViewed.set('parent',user);
+    itemsViewed.set('itemsViewedCount', 0);
     itemsViewed.save({
       success: function() {
         // now that a itemsViewed has been created for this user, we can save this item to their itemsViewed object
