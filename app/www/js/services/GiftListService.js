@@ -60,13 +60,13 @@ angular.module('giftlist.services')
       }
     }).then(function(userGiftList) {
       var userGiftListArray = userGiftList.get('savedGifts');
-      var GiftItem = Parse.Object.extend('GiftItem');
-      var giftItemQuery = new Parse.Query(GiftItem);
-      giftItemQuery.containedIn('objectId', userGiftListArray);
-      giftItemQuery.find({
-        success: function(giftItems){
-          for (var i = 0; i < giftItems.length; i++) {
-            giftList[ giftItems[i].id ] = giftItems[i];
+      var Items = Parse.Object.extend('Items');
+      var itemsQuery = new Parse.Query(Items);
+      itemsQuery.containedIn('objectId', userGiftListArray);
+      itemsQuery.find({
+        success: function(items){
+          for (var i = 0; i < items.length; i++) {
+            giftList[ items[i].id ] = items[i];
           };
           /* The next line '$state.go(...)' is a hack. For some reason, the user
            * had to click 'My Giftlist' again to make the list render */

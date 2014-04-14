@@ -29,24 +29,23 @@ angular.module('giftlist.services')
       itemsViewedArray = itemsViewed.get('itemsViewed');
     }
 
-    var GiftItem = Parse.Object.extend('GiftItem');
-    var giftItemQuery = new Parse.Query(GiftItem);
-    giftItemQuery.notContainedIn('objectId', itemsViewedArray);
-    giftItemQuery.find({
-      success: function(giftItems) {
+    var Items = Parse.Object.extend('Items');
+    var itemsQuery = new Parse.Query(Items);
+    itemsQuery.notContainedIn('objectId', itemsViewedArray);
+    itemsQuery.find({
+      success: function(items) {
         deferred.resolve({
           all: function() {
-            return giftItems;
+            return items;
           },
           get: function(giftId) {
             // Simple index lookup
-            return giftItems[giftId];
-          },
-          wishlist: []
+            return items[giftId];
+          }
         });
       },
       error: function(error) {
-        deferred.reject("Error fetching giftItems from Parse: " + error.code + " " + error.message);
+        deferred.reject("Error fetching items from Parse: " + error.code + " " + error.message);
       }
     });
   });
