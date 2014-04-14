@@ -1,7 +1,6 @@
 angular.module('giftlist.services')
 
 .factory('ItemsViewedService', function() {
-  var itemsViewed = {};
   // create a reference to the current user
   var user = Parse.User.current();
   // Create a reference to the Parse.Object 'ItemsViewed'
@@ -26,6 +25,7 @@ angular.module('giftlist.services')
     });
   };
 
+  // createNewItemsViewed is just a helper for saveToItemsViewed
   var createNewItemsViewed = function(item){
     var itemsViewed = new ItemsViewed();
     itemsViewed.set('parent',user);
@@ -40,48 +40,10 @@ angular.module('giftlist.services')
     });
   };
 
-  // var fetchGiftItemsViewed = function() {
-  //   var giftItemsViewedQuery = new Parse.Query(GiftItemsViewed);
-  //   giftItemsViewedQuery.equalTo('parent', user); // filters for giftList belonging to that user
-  //   giftItemsViewedQuery.first({
-  //     success: function(giftItemsViewed){
-  //       if (giftItemsViewed === undefined) {
-  //         console.log('No items exist in this giftList!');
-  //       } else {
-  //         return giftItemsViewed;
-  //       }
-  //     },
-  //     error: function(error) {
-  //       console.error(error);
-  //     }
-  //   }).then(function(giftItemsViewed) {
-  //     var giftItemsViewedArray = giftItemsViewed.get('itemsViewed');
-  //     var GiftItem = Parse.Object.extend('GiftItem');
-  //     var giftItemQuery = new Parse.Query(GiftItem);
-  //     giftItemQuery.containedIn('objectId', giftItemsViewedArray);
-  //     giftItemQuery.find({
-  //       success: function(giftItems){
-  //         for (var i = 0; i < giftItems.length; i++) {
-  //           itemsViewed[ giftItems[i].id ] = giftItems[i];
-  //         };
-  //         console.log(itemsViewed)
-  //       },
-  //       error: function(error) {
-  //         console.error(error);
-  //       }
-  //     })
-  //   })
-  // };
-
   return {
     saveToItemsViewed: function(item) {
-      itemsViewed[item.id] = item; // adds item to the local itemsViewed
-      saveToItemsViewed(item); // adds item to the parse itemsViewed
-    },
-    // fetchGiftItemsViewed: function() {
-    //   fetchGiftItemsViewed();
-    //   return itemsViewed;
-    // }
+      saveToItemsViewed(item); // adds item to the parse itemsViewed table
+    }
   };
 
 });

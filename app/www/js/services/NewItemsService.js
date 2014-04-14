@@ -21,7 +21,14 @@ angular.module('giftlist.services')
       console.error(error);
     }
   }).then(function(itemsViewed) {
-    var itemsViewedArray = itemsViewed.get('itemsViewed');
+    var itemsViewedArray;
+
+    if (itemsViewed === undefined) {
+      itemsViewedArray = [];
+    } else {
+      itemsViewedArray = itemsViewed.get('itemsViewed');
+    }
+
     var GiftItem = Parse.Object.extend('GiftItem');
     var giftItemQuery = new Parse.Query(GiftItem);
     giftItemQuery.notContainedIn('objectId', itemsViewedArray);
