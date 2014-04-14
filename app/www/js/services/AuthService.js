@@ -1,6 +1,6 @@
 angular.module('giftlist.services')
 
-.factory('FirebaseService', function ($state) {
+.factory('AuthService', function ($state) {
   var facebookLogin = function () {
     console.log('logging in');
     Parse.FacebookUtils.logIn(null, {
@@ -18,9 +18,9 @@ angular.module('giftlist.services')
     });
   };
 
-  var logout = function () {
+  var logout = function() {
     console.log('logging out');
-    Parse.User.logOut()
+    Parse.User.logOut();
   };
 
   return {
