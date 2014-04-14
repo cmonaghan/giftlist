@@ -1,6 +1,6 @@
 angular.module('giftlist.controllers')
 
-.controller('BrowseCtrl', function($scope, NewItemsService, GiftListService) {
+.controller('BrowseCtrl', function($scope, NewItemsService, GiftListService, ItemsViewedService) {
   // "NewItemsService" returns data from Parse
   var currIndex = 0;
 
@@ -13,8 +13,8 @@ angular.module('giftlist.controllers')
   });
 
   $scope.addToGiftList = function(gift) {
-    $scope.nextItem();
     GiftListService.addToGiftList(gift);
+    $scope.nextItem();
   };
 
   $scope.removeGift = function(swipeDir) {
@@ -32,6 +32,8 @@ angular.module('giftlist.controllers')
   };
 
   $scope.nextItem = function () {
+    var currentItem = $scope.gift;
+    ItemsViewedService.saveToItemsViewed(currentItem);
     currIndex++;
     $scope.gift = $scope.gifts[currIndex];
   };

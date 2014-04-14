@@ -127,7 +127,7 @@ var sampleGiftItems = [
 
 // ****** This loops through and saves each mock giftItem to parse ******* //
 for (var i = 0; i < sampleGiftItems.length; i++) {
-  app.insert('GiftItem', sampleGiftItems[i], function(err, response) {
+  app.insert('Items', sampleGiftItems[i], function(err, response) {
     if (err) {
       console.log('Error:', err);
     } else {
