@@ -33,7 +33,7 @@ angular.module('giftlist.controllers')
 
   $scope.nextItem = function () {
     var currentItem = $scope.gift;
-    ItemsViewedService.saveItemToGiftItemsViewed(currentItem);
+    ItemsViewedService.saveToItemsViewed(currentItem);
     currIndex++;
     $scope.gift = $scope.gifts[currIndex];
   };

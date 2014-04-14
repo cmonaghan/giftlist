@@ -4,20 +4,20 @@ angular.module('giftlist.services')
   var itemsViewed = {};
   // create a reference to the current user
   var user = Parse.User.current();
-  // Create a reference to the Parse.Object 'GiftItemsViewed'
-  var GiftItemsViewed = Parse.Object.extend('GiftItemsViewed');
+  // Create a reference to the Parse.Object 'ItemsViewed'
+  var ItemsViewed = Parse.Object.extend('ItemsViewed');
 
-  var saveItemToGiftItemsViewed = function(item) {
-    var giftItemsViewedQuery = new Parse.Query(GiftItemsViewed);
-    giftItemsViewedQuery.equalTo('parent', user); // filters for giftList belonging to that user
-    giftItemsViewedQuery.first({ // queries generally return an array, '.first' returns only the first object in the array
-      success: function(giftItemsViewed){
-        // if this user does not have a giftItemsViewed object, create one (ie - this is their first time using the app)
-        if (giftItemsViewed === undefined) {
-          createNewGiftItemsViewed(item);
+  var saveToItemsViewed = function(item) {
+    var itemsViewedQuery = new Parse.Query(ItemsViewed);
+    itemsViewedQuery.equalTo('parent', user); // filters for itemsViewed belonging to that user
+    itemsViewedQuery.first({ // queries generally return an array, '.first' returns only the first object in the array
+      success: function(itemsViewed){
+        // if this user does not have a itemsViewed object, create one (ie - this is their first time using the app)
+        if (itemsViewed === undefined) {
+          createNewItemsViewed(item);
         } else {
-          giftItemsViewed.addUnique('itemsViewed', item.id);
-          giftItemsViewed.save();
+          itemsViewed.addUnique('itemsViewed', item.id);
+          itemsViewed.save();
         }
       },
       error: function() {
@@ -26,13 +26,13 @@ angular.module('giftlist.services')
     });
   };
 
-  var createNewGiftItemsViewed = function(gift){
-    var giftItemsViewed = new GiftItemsViewed();
-    giftItemsViewed.set('parent',user);
-    giftItemsViewed.save({
+  var createNewItemsViewed = function(item){
+    var itemsViewed = new ItemsViewed();
+    itemsViewed.set('parent',user);
+    itemsViewed.save({
       success: function() {
-        // now that a giftItemsViewed has been created for this user, we can save this gift to their giftItemsViewed object
-        saveItemToGiftItemsViewed(gift);
+        // now that a itemsViewed has been created for this user, we can save this item to their itemsViewed object
+        saveToItemsViewed(item);
       },
       error: function(error) {
         console.error(error);
@@ -74,9 +74,9 @@ angular.module('giftlist.services')
   // };
 
   return {
-    saveItemToGiftItemsViewed: function(item) {
-      itemsViewed[item.id] = item; // adds gift to the local itemsViewed
-      saveItemToGiftItemsViewed(item); // adds gift to the parse itemsViewed
+    saveToItemsViewed: function(item) {
+      itemsViewed[item.id] = item; // adds item to the local itemsViewed
+      saveToItemsViewed(item); // adds item to the parse itemsViewed
     },
     // fetchGiftItemsViewed: function() {
     //   fetchGiftItemsViewed();
