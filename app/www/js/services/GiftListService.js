@@ -27,6 +27,7 @@ angular.module('giftlist.services')
     });
   };
 
+  // This is only used as a helper function for saveItemToParseGiftList
   var createNewUserGiftList = function(gift){
     var userGiftList = new UserGiftList();
     userGiftList.set('parent',user);
