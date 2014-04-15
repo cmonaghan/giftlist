@@ -3,7 +3,11 @@ var Parse = require('node-parse-api').Parse; // docs are here: https://github.co
 
 // AWS stuff
 var prodAdv = aws.createProdAdvClient('AKIAJA3VUOAVLK3I6EGA', '6+cUIObeSHDv5BXuolmIyyCRVpFwoGYJzqImvIHv', 'giftlist08-20');
-var options = {SearchIndex: "HomeGarden", Keywords: "wedding registry"};
+var options = {
+  SearchIndex: "HomeGarden",
+  Keywords: "wedding registry",
+  ResponseGroup: 'Medium'
+};
 
 // Parse stuff
 var APP_ID = "7sT5TrkKNplKarIBxjcOHh8dDfRUQwNlGq5YMuzG";
@@ -17,20 +21,19 @@ var prepareAmazonDataForParse = function(amazonResponse) {
   var amazonItems = amazonResponse.Items.Item;
 
   for (var i = 0; i < amazonItems.length; i++) {
-    var itemData = {
-      title: undefined,
-      description: undefined,
-      productGroup: undefined,
-      productImage: undefined,
-      price: undefined
-    };
 
     var item = amazonItems[i];
 
-    itemData.title = item.ItemAttributes.Title;
-    itemData.productGroup = item.ItemAttributes.ProductGroup;
+    var itemData = {
+      title: item.ItemAttributes.Title,
+      description: item.ItemAttributes.Feature,
+      price: item.OfferSummary.LowestNewPrice.Amount / 100,
+      productImage: item.LargeImage.URL,
+      productGroup: item.ItemAttributes.ProductGroup,
+      ASIN: item.ASIN
+    };
 
-    dataForParse.push(itemData)
+    dataForParse.push(itemData);
   };
 
   return dataForParse;
@@ -56,9 +59,9 @@ prodAdv.call("ItemSearch", options, function(err, response) {
   } else {
     // running `node-debug server.js` (node-inspector) allows you to view response in browser
     console.log(response);
+    // debugger
     var dataForParse = prepareAmazonDataForParse(response);
     saveDataToParse(dataForParse);
-    // debugger;
   }
 });
 
