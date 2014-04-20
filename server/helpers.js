@@ -8,6 +8,7 @@ var app = new Parse(APP_ID, MASTER_KEY);
 
 var findExistingParseItems = function() {
   var promise = new q.Promise(function(resolve, reject){
+    // need this to return all parse 'Items', not just 'Kitchen'
     app.findMany('Items', {productGroup: 'Kitchen'}, function (error, response) {
       if (error) {
         reject(error);
@@ -23,42 +24,31 @@ var saveDataToParse = function(response) {
   var amazonItems = prepareAmazonDataForParse(response);
 
   var itemsAlreadyInParse = findExistingParseItems();
-  itemsAlreadyInParse.then(function(data){
-    var itemASINNumbers = listItemsInParse(data);
+  itemsAlreadyInParse.then(function(existingParseItems){
+    var existingParseItems = existingParseItems.results;
     // ****** This loops through and removes any item already in parse ******* //
-    for (var i = 0; i < itemASINNumbers.length; i++) {
+    for (var i = 0; i < existingParseItems.length; i++) {
       for (var j = 0; j < amazonItems.length; j++) {
-        if (itemASINNumbers[i] === amazonItems[j].ASIN) {
-          console.log(amazonItems[j].ASIN, ': this item already exists Parse')
+        if (existingParseItems[i].ASIN === amazonItems[j].ASIN) {
+          console.log('item with ASIN ' + amazonItems[j].ASIN + ' already exists Parse');
+          amazonItems.splice(j,1);
+          j--;
         };
       }
     };
+  }).then(function(){
+    // ****** This loops through and saves each item to parse ******* //
+    for (var i = 0; i < amazonItems.length; i++) {
+      app.insert('Items', amazonItems[i], function(error, response) {
+        if (error) {
+          console.log('Error:', error);
+        } else {
+          console.log('successfully posted item to Parse');
+        }
+      });
+    };
   });
-
-
-  // ****** This loops through and saves each item to parse ******* //
-  // for (var i = 0; i < amazonItems.length; i++) {
-  //   app.insert('Items', amazonItems[i], function(error, response) {
-  //     if (error) {
-  //       console.log('Error:', error);
-  //     } else {
-  //       console.log('successfully posted item to Parse');
-  //     }
-  //   });
-  // };
 };
-
-//
-function listItemsInParse (parseResponse) {
-  var itemData = parseResponse.results;
-
-  var itemASINNumbers = [];
-  for (var i = 0; i < itemData.length; i++) {
-    itemASINNumbers.push(itemData[i].ASIN);
-  };
-
-  return itemASINNumbers;
-}
 
 // prepareAmazonDataForParse is a helper function for saveDataToParse
 function prepareAmazonDataForParse(amazonResponse) {
