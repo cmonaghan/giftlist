@@ -1,33 +1,4 @@
-// AWS stuff
-var aws = require("aws-lib");
-
-var prodAdv = aws.createProdAdvClient('AKIAJA3VUOAVLK3I6EGA', '6+cUIObeSHDv5BXuolmIyyCRVpFwoGYJzqImvIHv', 'giftlist08-20');
-
-var options = {SearchIndex: "Books", Keywords: "Javascript"}
-
-prodAdv.call("ItemSearch", options, function(err, result) {
-  if (err) {
-    console.log(err);
-  } else {
-    // running `node-debug server.js` (node-inspector) allows you to view result in browser
-    console.log(result);
-  }
-});
-
-
-// ------------------------------------------------------------------------
-
-
-// Parse stuff
-var Parse = require('node-parse-api').Parse; // docs are here: https://github.com/leveton/node-parse-api
-
-var APP_ID = "7sT5TrkKNplKarIBxjcOHh8dDfRUQwNlGq5YMuzG";
-var MASTER_KEY = "FzU95q0Il1D8aqAEFWSrvv8haq7pyvJAV0mg1heQ";
-
-var app = new Parse(APP_ID, MASTER_KEY);
-
-// mock data
-var sampleGiftItems = [
+[
   { title: 'Ball Complete Book of Home Preserving',
     description: 'From the experts, the new bible in home preserving.',
     productImage: 'http://ecx.images-amazon.com/images/I/51nF3izhyuL.jpg',
@@ -124,14 +95,3 @@ var sampleGiftItems = [
     price: 19.95
   }
 ];
-
-// ****** This loops through and saves each mock giftItem to parse ******* //
-for (var i = 0; i < sampleGiftItems.length; i++) {
-  app.insert('Items', sampleGiftItems[i], function(err, response) {
-    if (err) {
-      console.log('Error:', err);
-    } else {
-      console.log('successfully posted sampleGiftItem');
-    }
-  });
-};
