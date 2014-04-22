@@ -1,6 +1,8 @@
 # To Do
 
 - get it deploying to a physical phone
+  - run successfully in iOS emulator
+  - run successfully on iOS phone
 - Add social integration with ability to share your giftlist
 - Fix auth issue (after logout, errors on re-login) (if you can’t log back in after deleting user, may need to call FB.logout())
 - Add swiping feature to home screen (like Tinder)
