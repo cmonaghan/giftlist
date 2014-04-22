@@ -1,8 +1,8 @@
-# TO DO
+# To Do
 
+- get it deploying to a physical phone
 - Add social integration with ability to share your giftlist
 - Fix auth issue (after logout, errors on re-login) (if you can’t log back in after deleting user, may need to call FB.logout())
-- get it deploying to a physical phone
 - Add swiping feature to home screen (like Tinder)
 - Allow user to remove giftList items
 - Set up tools: Travis, gulp/grunt, browserify, js-hint/js-lint pre-commit hook, a testing framework
@@ -10,13 +10,13 @@
 
 
 
-# REFACTORS
+# Refactors
 
 - remove double-nested `for` loop in helpers.js -> saveDataToParse
 
 
 
-# ICEBOX (non-critical)
+# Icebox
 
 - Add more api's so products are pulled from many places
 - Allow user to specify their interests so we feed those things specifically
@@ -25,7 +25,7 @@
 
 
 
-# MILESTONES COMPLETED
+# Milestones Completed
 
 - switch database to parse
 - Integrate with Amazon API
