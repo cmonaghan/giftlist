@@ -4,7 +4,7 @@ Tinder meets Pinterest. Like and dislike your favorite products to build your wi
 
 To run:
 
-    cd www
+    cd app/www
 
     python -m SimpleHTTPServer
 
