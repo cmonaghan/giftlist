@@ -2,31 +2,39 @@
   <img src="/res/images/splash.png" class="splash">
 
   <content padding="true">
-    <h1 class="logo">Giftlist</h1>
+    <h1 class="logo">Sign Up</h1>
 
-    <form name="login_form" novalidate ng-submit="login(user)" class="login-button">
+    <form ng-submit="signup(newUser)" name="signup_form" class="login-button" novalidate>
       <label class="item item-input">
         <span class="input-label">Username</span>
         <input type="text"
           name="username"
-          ng-model="user.username"
+          ng-model="newUser.username"
           placeholder="Username"
           ng-minlength=3
           ng-maxlength=15
           required>
       </label>
       <label class="item item-input">
+        <span class="input-label">Email</span>
+        <input type="email"
+          name="email"
+          ng-model="newUser.email"
+          placeholder="Email"
+          required>
+      </label>
+      <label class="item item-input">
         <span class="input-label">Password</span>
         <input type="password"
           name="password"
-          ng-model="user.password"
+          ng-model="newUser.password"
           placeholder="Password"
           ng-minlength=6
           required>
       </label>
-      <button type="submit" ng-disabled="login_form.$invalid" class="button button-block button-positive">Login</button>
+      <button ng-disabled="signup_form.$invalid" class="button button-block button-positive">Sign Up</button>
     </form>
-    <div class="sign-up-link">New user? <a href="#/signup">Sign up here!</a></div>
+    <div class="sign-up-link">Return to <a href="#/login">login</a></div>
   </content>
 
 </div>

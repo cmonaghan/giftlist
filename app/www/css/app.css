@@ -33,7 +33,7 @@ h1.logo {
   margin-left: 5%;
   margin-right: 5%;
   position: absolute;
-  bottom: 15px;
+  bottom: 40px;
 }
 
 .top-right {
@@ -62,4 +62,15 @@ h1.logo {
 
 .myitem {
   padding: 0;
+}
+
+.sign-up-link {
+  background-color: white;
+  position: absolute;
+  text-align: center;
+  margin: 15px auto;
+  bottom: 0px;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
