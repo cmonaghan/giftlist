@@ -1,21 +1,8 @@
 angular.module('giftlist.services')
 
 .factory('AuthService', function ($state) {
-  var facebookLogin = function () {
-    console.log('logging in');
-    Parse.FacebookUtils.logIn(null, {
-      success: function(user) {
-        if (!user.existed()) {
-          console.log("User signed up and logged in through Facebook!");
-        } else {
-          console.log("User logged in through Facebook!");
-        }
-        $state.go('tab.browse'); // navigate to the browse tab upon successful login
-      },
-      error: function(user, error) {
-        alert("User cancelled the Facebook login or did not fully authorize.");
-      }
-    });
+  var login = function() {
+    console.log('login was triggered.');
   };
 
   var logout = function() {
@@ -24,7 +11,7 @@ angular.module('giftlist.services')
   };
 
   return {
-    facebookLogin: facebookLogin,
+    login: login,
     logout: logout
   };
 });
