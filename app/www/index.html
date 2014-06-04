@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Ionic Seed App</title>
+    <title>Giftlist</title>
 
     <!-- Parse API -->
     <script src="//www.parsecdn.com/js/parse-1.2.18.min.js"></script>
@@ -34,26 +34,6 @@
     'starter' is the name of this angular module (js/app.js)
   -->
   <body ng-app="giftlist" animation="slide-left-right-ios7">
-    <!-- Facebook SDK (https://developers.facebook.com/docs/javascript/quickstart) -->
-    <div id="fb-root"></div>
-    <script>
-      window.fbAsyncInit = function() {
-        Parse.FacebookUtils.init({
-          appId      : '254034788108794', // It's ok to reveal this appID, it isn't secret or sensitive
-          // status     : true, // disabled because it can interfere with Parse Facebook integration
-          cookie     : true, // enable cookies to allow Parse to access the session
-          xfbml      : true  // parse XFBML
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/all.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
 
     <!--
       The nav bar that will be updated as we navigate between views
@@ -82,8 +62,10 @@
     <script src="js/controllers/LoginCtrl.js"></script>
     <script src="js/controllers/SearchCtrl.js"></script>
     <script src="js/controllers/AccountCtrl.js"></script>
+    <script src="js/controllers/SignupCtrl.js"></script>
     <script src="js/directives/giftlistPager.js"></script>
     <script src="js/directives/giftlistSlide.js"></script>
     <script src="js/directives/giftlistSlideBox.js"></script>
+    <script src="js/directives/ensureUnique.js"></script>
   </body>
 </html>

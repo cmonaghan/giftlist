@@ -14,6 +14,12 @@ angular.module('giftlist', ['ionic', 'giftlist.services', 'giftlist.controllers'
       controller: 'LoginCtrl'
     })
 
+    .state('signup', {
+      url: "/signup",
+      templateUrl: "templates/signup.html",
+      controller: 'SignupCtrl'
+    })
+
     // setup an abstract state for the tabs directive
     .state('tab', {
       url: "/tab",

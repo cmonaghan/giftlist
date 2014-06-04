@@ -28,12 +28,12 @@ h1.logo {
   padding-top: 40%;
 }
 
-.login-button {
+.login-forms {
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
   position: absolute;
-  bottom: 15px;
+  bottom: 40px;
 }
 
 .top-right {
@@ -48,13 +48,6 @@ h1.logo {
   left: 10px;
 }
 
-/*.ng-enter
-  animation: fadeIn 0.5s;
-
-.ng-leave
-  animation: fadeOut 0.5s;
-*/
-
 .product-image {
   max-height: 300px;
   max-width: 100%;
@@ -62,4 +55,15 @@ h1.logo {
 
 .myitem {
   padding: 0;
+}
+
+.sign-up-link {
+  background-color: white;
+  position: absolute;
+  text-align: center;
+  margin: 15px auto;
+  bottom: 0px;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
