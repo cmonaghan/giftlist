@@ -1,8 +1,8 @@
 ### To Do
 
-NEXT: add form validation for login & signup
-
+- Check to see username/email already exist on new signup
 - Add livereload
+- Add SASS/Compass
 - Browse should not show items already seen
 - get it deploying to a physical phone
 - Add FB auth

@@ -28,7 +28,7 @@ h1.logo {
   padding-top: 40%;
 }
 
-.login-button {
+.login-forms {
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
@@ -47,13 +47,6 @@ h1.logo {
   top: 10px;
   left: 10px;
 }
-
-/*.ng-enter
-  animation: fadeIn 0.5s;
-
-.ng-leave
-  animation: fadeOut 0.5s;
-*/
 
 .product-image {
   max-height: 300px;

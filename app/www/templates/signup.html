@@ -4,7 +4,7 @@
   <content padding="true">
     <h1 class="logo">Sign Up</h1>
 
-    <form ng-submit="signup(newUser)" name="signup_form" class="login-button" novalidate>
+    <form ng-submit="signup(newUser)" name="signup_form" class="login-forms" novalidate>
       <label class="item item-input">
         <span class="input-label">Username</span>
         <input type="text"
@@ -13,6 +13,7 @@
           placeholder="Username"
           ng-minlength=3
           ng-maxlength=15
+          ensure-unique
           required>
       </label>
       <label class="item item-input">
